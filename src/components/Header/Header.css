@@ -1,0 +1,27 @@
+.navbar {
+  padding: 20px 5%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.navbar .logo h1 {
+  color: #81e400;
+  font-size: 30px;
+}
+
+.navbar .menu li {
+  list-style: none;
+  display: inline-block;
+}
+.navbar .menu li a {
+  display: block;
+  margin-left: 40px;
+  color: #81e400;
+  text-decoration: none;
+  font-size: 30px;
+  font-weight: bold;
+}
+.navbar .menu li a:hover {
+  color: #61aa00;
+}
