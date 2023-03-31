@@ -2,27 +2,30 @@ import "./Header.css";
 
 export const Header = () => {
   return (
-    <nav class="navbar">
-      <div class="logo">
+    <nav className="navbar">
+      <div className="logo">
         <a href="#">
-          <h1>Shop & Fun</h1>
+          <h1>Cook with Fun</h1>
         </a>
       </div>
-      <ul class="menu">
+      <ul className="menu">
         <li>
-          <a href="#">Home</a>
+          <a href="#">Recipes</a>
         </li>
         <li>
-          <a href="#">Catalog</a>
-        </li>
-        <li>
-          <a href="#">Add Product</a>
+          <a href="#">Add Recipe</a>
         </li>
         <li>
           <a href="#">Login</a>
         </li>
         <li>
           <a href="#">Register</a>
+        </li>
+        <li>
+          <a href="#">Logout</a>
+        </li>
+        <li>
+          <a href="#">Profile</a>
         </li>
       </ul>
     </nav>
