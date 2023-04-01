@@ -1,31 +1,31 @@
 import "./Header.css";
-
+import { Link } from "react-router-dom";
 export const Header = () => {
   return (
     <nav className="navbar">
       <div className="logo">
-        <a href="#">
+        <Link to="/">
           <h1>Cook with Fun</h1>
-        </a>
+        </Link>
       </div>
       <ul className="menu">
         <li>
-          <a href="#">Recipes</a>
+          <Link to="/">Recipes</Link>
         </li>
         <li>
-          <a href="#">Add Recipe</a>
+          <Link to="/recipes/create">Add Recipe</Link>
         </li>
         <li>
-          <a href="#">Login</a>
+          <Link to="/login">Login</Link>
         </li>
         <li>
-          <a href="#">Register</a>
+          <Link to="/register">Register</Link>
         </li>
         <li>
-          <a href="#">Logout</a>
+          <Link to="/logout">Logout</Link>
         </li>
         <li>
-          <a href="#">Profile</a>
+          <Link to="/">Profile</Link>
         </li>
       </ul>
     </nav>

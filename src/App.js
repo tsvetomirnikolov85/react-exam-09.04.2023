@@ -4,16 +4,26 @@ import { Login } from "./components/Login/Login";
 import { Register } from "./components/Register/Register";
 import { AddRecipe } from "./components/AddRecipe/AddRecipe";
 import { EditRecipe } from "./components/EditRecipe/EditRecipe";
+import { Details } from "./components/Details/Details";
+import { Logout } from "./components/Logout/Logout";
+import { Routes, Route } from "react-router-dom";
+
 function App() {
   return (
-    <>
+    <div id="box">
       <Header />
-      <Recipes />
-      <Login />
-      <Register />
-      <AddRecipe />
-      <EditRecipe />
-    </>
+      <main id="main-content">
+        <Routes>
+          <Route path="/" element={<Recipes />} />
+          <Route path="/login" element={<Login />} />
+          <Route path="/logout" element={<Logout />} />
+          <Route path="/register" element={<Register />} />
+          <Route path="/recipes/create" element={<AddRecipe />} />
+          <Route path="/recipes/edit" element={<EditRecipe />} />
+          <Route path="/recipes/:recipeId" element={<Details />} />
+        </Routes>
+      </main>
+    </div>
   );
 }
 
