@@ -14,6 +14,7 @@
 .navbar .menu li {
   list-style: none;
   display: inline-block;
+  font-size: 10px;
 }
 .navbar .menu li a {
   display: block;

@@ -22,10 +22,10 @@ export const Header = () => {
           <Link to="/register">Register</Link>
         </li>
         <li>
-          <Link to="/logout">Logout</Link>
+          <Link to="/recipes/edit">Logout</Link>
         </li>
         <li>
-          <Link to="/">Profile</Link>
+          <Link to="/recipes/1234">Profile</Link>
         </li>
       </ul>
     </nav>
