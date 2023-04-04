@@ -5,7 +5,7 @@ const auth = require("./middlewares/auth");
 const userController = require("./controllers/usersController");
 const recipesController = require("./controllers/recipesController");
 
-const connectionString = "mongodb://127.0.0.1:27017/test";
+const connectionString = "mongodb://127.0.0.1:27017/cooking";
 const port = 8080;
 
 start();

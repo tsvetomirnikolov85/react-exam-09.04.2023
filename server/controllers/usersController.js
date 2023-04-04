@@ -3,16 +3,8 @@ const { isGuest } = require("../middlewares/guards");
 const { register, login, logout } = require("../services/usersService");
 
 router.post("/register", isGuest(), async (req, res) => {
-  if (req.body.password.trim() === "") {
-    throw new Error("Password is required");
-  } else if (req.body.password !== req.body.repass) {
-    throw new Error("Passwords don't match");
-  } else if (req.body.username.trim() === "") {
-    throw new Error("Username is required!");
-  }
-
   try {
-    const result = await register(req.body.username.trim().toLowerCase(), req.body.password.trim());
+    const result = await register(req.body.username?.trim().toLowerCase(), req.body.password?.trim());
     res.status(201).json(result);
   } catch (err) {
     console.error(err.message);

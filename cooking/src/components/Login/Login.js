@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { Link } from "react-router-dom";
 import "./Login.css";
 
 export const Login = () => {
@@ -24,7 +25,7 @@ export const Login = () => {
         <input onChange={onPasswordChange} type="password" name="password" id="login-password" placeholder="password" value={password} />
         <button type="submit">login</button>
         <p className="message">
-          Not registered? <a href="#">Create an account</a>
+          Not registered? <Link to="/register">Create an account</Link>
         </p>
       </form>
     </div>

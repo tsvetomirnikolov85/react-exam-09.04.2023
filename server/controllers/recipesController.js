@@ -4,6 +4,7 @@ const { getAll, getById, createRecipe, update, remove } = require("../services/r
 
 router.get("/", async (req, res) => {
   const recipes = await getAll();
+  console.log(recipes);
   res.status(200).json(recipes);
 });
 
