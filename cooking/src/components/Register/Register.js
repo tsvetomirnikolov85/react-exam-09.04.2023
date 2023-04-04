@@ -18,7 +18,6 @@ export const Register = () => {
       .then((responce) => responce.json())
       .then((data) => console.log(data))
       .catch(console.error());
-    console.log(user);
   }
 
   function onUsernameChange(e) {
