@@ -1,7 +1,7 @@
 const { verifySession } = require("../services/usersService");
 
 module.exports = () => (req, res, next) => {
-  const token = req.headers["x-authorization"];
+  const token = req.headers["X-Authorization"];
 
   try {
     if (token) {

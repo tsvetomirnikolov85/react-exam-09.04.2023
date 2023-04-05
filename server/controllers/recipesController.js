@@ -11,20 +11,24 @@ router.get("/", async (req, res) => {
 router.post("/", isAuth(), async (req, res) => {
   let data = req.body;
   data = Object.assign(data, { ownerId: req.user._id });
-  await createRecipe(data);
-  res.status(201).json();
+  const recipe = await createRecipe(data);
+  res.status(201).json(recipe);
 });
 
 router.get("/:recipeId", async (req, res) => {
-  const photo = await Photo.findById({ _id: req.params.photoId }).lean();
-  const isCreator = photo.owner == req.user?._id;
-  let lockComment;
-  if (!isCreator && res.locals.isAuthenticated) {
-    lockComment = true;
-  }
+  const recipe = await getById({ _id: req.params.recipeId });
+  res.status(200).json(recipe);
 });
 
-router.put("/:recipeId", async (req, res) => {});
-router.delete("/:recipeId", async (req, res) => {});
+router.put("/:recipeId", isAuth(), async (req, res) => {
+  const data = req.body;
+  id = req.params.recipeId;
+  await update(id, data);
+  res.status(200).json(updatedRecipe);
+});
+router.delete("/:recipeId", isAuth(), async (req, res) => {
+  await remove({ _id: req.params.recipeId });
+  res.status(200);
+});
 
 module.exports = router;

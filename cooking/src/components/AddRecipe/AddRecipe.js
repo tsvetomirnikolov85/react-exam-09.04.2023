@@ -35,16 +35,9 @@ export const AddRecipe = () => {
       <h2>Add Recipe</h2>
       <form className="create-form" method="POST" onSubmit={onAddRecipeSubmit}>
         <input type="text" onChange={onTitleChange} name="title" id="title" placeholder="Title" value={title} />
-        <input type="text" onChange={onImageUrlChange} name="imageUrl" id="product-image" placeholder="Product Image" value={imageUrl} />
+        <input type="text" onChange={onImageUrlChange} name="imageUrl" id="product-image" placeholder="Image" value={imageUrl} />
         <p className="info">Please enter every product separated by comma ","</p>
-        <textarea
-          id="product-description"
-          onChange={onProductsChange}
-          name="products"
-          placeholder="Products"
-          rows="5"
-          cols="50"
-          value={products}></textarea>
+        <textarea id="product-description" onChange={onProductsChange} name="products" placeholder="Products" rows="5" cols="50" value={products}></textarea>
         <textarea
           id="recipe-description"
           onChange={onDescriptionChange}
