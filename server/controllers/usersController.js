@@ -8,7 +8,7 @@ router.post("/register", isGuest(), async (req, res) => {
     res.status(201).json(result);
   } catch (err) {
     console.error(err.message);
-    res.status(400).json({ msg: err.message });
+    res.status(400).json({ message: err.message });
   }
 });
 
@@ -18,7 +18,7 @@ router.post("/login", isGuest(), async (req, res) => {
     res.json(result);
   } catch (err) {
     console.error(err.message);
-    res.status(400).json({ msg: err.message });
+    res.status(400).json({ message: err.message });
   }
 });
 

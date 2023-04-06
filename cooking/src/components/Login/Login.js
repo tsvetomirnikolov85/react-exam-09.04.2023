@@ -1,28 +1,25 @@
-import { useState } from "react";
+import { useContext } from "react";
 import { Link } from "react-router-dom";
+import { AuthContext } from "../../contexts/AuthContext";
+import { useForm } from "../../hooks/useForm";
 import "./Login.css";
 
 export const Login = () => {
-  const [username, setUsername] = useState("");
-  const [password, setPassword] = useState("");
+  const { onLoginSubmit } = useContext(AuthContext);
+  const { values, changeHandler, onSubmit } = useForm(
+    {
+      username: "",
+      password: "",
+    },
+    onLoginSubmit
+  );
 
-  function onLoginSubmitHandler(e) {
-    e.preventDefault();
-  }
-
-  function onUsernameChange(e) {
-    setUsername(e.target.value);
-  }
-
-  function onPasswordChange(e) {
-    setPassword(e.target.value);
-  }
   return (
     <div className="form">
       <h2>Login</h2>
-      <form onSubmit={onLoginSubmitHandler} className="login-form">
-        <input onChange={onUsernameChange} type="text" name="username" id="login-username" placeholder="username" value={username} />
-        <input onChange={onPasswordChange} type="password" name="password" id="login-password" placeholder="password" value={password} />
+      <form onSubmit={onSubmit} className="login-form">
+        <input onChange={changeHandler} type="text" name="username" id="login-username" placeholder="username" value={values.username} />
+        <input onChange={changeHandler} type="password" name="password" id="login-password" placeholder="password" value={values.password} />
         <button type="submit">login</button>
         <p className="message">
           Not registered? <Link to="/register">Create an account</Link>

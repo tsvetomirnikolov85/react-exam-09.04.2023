@@ -1,44 +1,27 @@
-import { useState } from "react";
+import { useContext } from "react";
 import { Link } from "react-router-dom";
+import { useForm } from "../../hooks/useForm";
+import { AuthContext } from "../../contexts/AuthContext";
 import "./Register.css";
 
 export const Register = () => {
-  const [username, setUsername] = useState("");
-  const [password, setPassword] = useState("");
-  const [repass, setRepass] = useState("");
-
-  function onLoginSubmitHandler(e) {
-    e.preventDefault();
-    const baseUrl = `http://localhost:8080/users/register`;
-    const user = fetch(baseUrl, {
-      method: "POST",
-      headers: { "content-type": "application/json" },
-      body: JSON.stringify({ username, password, repass }),
-    })
-      .then((responce) => responce.json())
-      .then((data) => console.log(data))
-      .catch(console.error());
-  }
-
-  function onUsernameChange(e) {
-    setUsername(e.target.value);
-  }
-
-  function onPasswordChange(e) {
-    setPassword(e.target.value);
-  }
-
-  function onRepeatPasswordChange(e) {
-    setRepass(e.target.value);
-  }
+  const { onRegisterSubmit } = useContext(AuthContext);
+  const { values, changeHandler, onSubmit } = useForm(
+    {
+      username: "",
+      password: "",
+      repass: "",
+    },
+    onRegisterSubmit
+  );
 
   return (
     <div className="form">
       <h2>Register</h2>
-      <form onSubmit={onLoginSubmitHandler} className="register-form" method="POST">
-        <input type="text" onChange={onUsernameChange} name="username" id="register-username" placeholder="username" value={username} />
-        <input type="password" onChange={onPasswordChange} name="password" id="register-password" placeholder="password" value={password} />
-        <input type="password" onChange={onRepeatPasswordChange} name="repass" id="repeat-password" placeholder="repeat password" value={repass} />
+      <form onSubmit={onSubmit} className="register-form" method="POST">
+        <input type="text" onChange={changeHandler} name="username" id="register-username" placeholder="username" value={values.username} />
+        <input type="password" onChange={changeHandler} name="password" id="register-password" placeholder="password" value={values.password} />
+        <input type="password" onChange={changeHandler} name="repass" id="repeat-password" placeholder="repeat password" value={values.repass} />
         <button type="submit">register</button>
         <p className="message">
           Already registered? <Link to="/login">Login</Link>

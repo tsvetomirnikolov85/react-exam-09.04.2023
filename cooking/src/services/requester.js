@@ -1,3 +1,5 @@
+import { json } from "react-router-dom";
+
 const requester = async (method, url, data) => {
   const options = {};
 
@@ -13,7 +15,7 @@ const requester = async (method, url, data) => {
     }
   }
 
-  const serializedAuth = localStorage.getItem("token");
+  const serializedAuth = localStorage.getItem("auth");
   if (serializedAuth) {
     const auth = JSON.parse(serializedAuth);
 
@@ -34,7 +36,7 @@ const requester = async (method, url, data) => {
   const result = await response.json();
 
   if (!response.ok) {
-    throw result;
+    throw json(result);
   }
 
   return result;
