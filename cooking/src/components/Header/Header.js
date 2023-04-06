@@ -33,7 +33,7 @@ export const Header = () => {
               <Link to="/recipes/create">Add Recipe</Link>
             </li>
             <li>
-              <Link to="/recipes/1234">Profile</Link>
+              <Link to="/recipes/profile">Profile</Link>
             </li>
             <li>
               <Link to="/logout">Logout</Link>
