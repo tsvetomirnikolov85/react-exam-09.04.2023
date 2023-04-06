@@ -30,13 +30,13 @@ export const Header = () => {
         {isAuthenticated && (
           <>
             <li>
-              <Link to="/recipes/edit">Logout</Link>
-            </li>
-            <li>
               <Link to="/recipes/create">Add Recipe</Link>
             </li>
             <li>
               <Link to="/recipes/1234">Profile</Link>
+            </li>
+            <li>
+              <Link to="/logout">Logout</Link>
             </li>
           </>
         )}
