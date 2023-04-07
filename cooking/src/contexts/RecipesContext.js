@@ -2,6 +2,7 @@ import { createContext, useState, useEffect, useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import { recipeServiceFactory } from "../services/recipeService";
 import { useAuthContext } from "./AuthContext";
+
 export const RecipeContext = createContext();
 
 export const RecipeProvider = ({ children }) => {
@@ -18,9 +19,9 @@ export const RecipeProvider = ({ children }) => {
 
   const onCreateRecipeSubmit = async (data) => {
     let products = data.products;
-    products = products.split("\n").map((x) => x.trim());
+    products = products.split(",").map(x => x.trim());
     data.products = products;
-    const recipe = Object.assign(data, { ["ownerID"]: userId, ["cooked"]: 0 });
+    const recipe = Object.assign(data, { ["ownerId"]: userId, ["cooked"]: 0 });
     try {
       const newRecipe = await recipeService.create(recipe);
       setRecipes((state) => [...state, newRecipe]);
@@ -30,12 +31,13 @@ export const RecipeProvider = ({ children }) => {
     navigate("/");
   };
 
-  const onEditRecipeSubmit = async (values) => {
-    const result = await recipeService.edit(values._id, values);
-
-    setRecipes((state) => state.map((x) => (x._id === values._id ? result : x)));
-
-    navigate(`/recipes/${values._id}`);
+  const onEditRecipeSubmit = async (data) => {
+    let products = data.products;
+    products = products.split(",").map(x => x.trim())
+    data.products = products;
+    const result = await recipeService.edit(data._id, data);
+    setRecipes((state) => state.map((x) => (x._id === data._id ? result : x)));
+    navigate(`/recipes/${data._id}`);
   };
 
   const deleteRecipe = (recipeId) => {
@@ -54,7 +56,10 @@ export const RecipeProvider = ({ children }) => {
     getRecipe,
   };
 
-  return <RecipeContext.Provider value={contextValues}>{children}</RecipeContext.Provider>;
+  return <RecipeContext.Provider
+    value={contextValues}>
+    {children}
+  </RecipeContext.Provider>;
 };
 
 export const useRecipeContext = () => {

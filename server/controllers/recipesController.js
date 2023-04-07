@@ -14,14 +14,16 @@ router.post("/", async (req, res) => {
 });
 
 router.get("/:recipeId", async (req, res) => {
-  const recipe = await getById({ _id: req.params.recipeId });
+  const id = (req.params.recipeId);
+  const recipe = await getById(id);
   res.status(200).json(recipe);
 });
 
-router.put("/:recipeId", isAuth(), async (req, res) => {
+router.put("/:recipeId", async (req, res) => {
   const data = req.body;
   id = req.params.recipeId;
-  await update(id, data);
+  const updatedRecipe = await update(id, data);
+  console.log(updatedRecipe);
   res.status(200).json(updatedRecipe);
 });
 router.delete("/:recipeId", isAuth(), async (req, res) => {

@@ -25,7 +25,7 @@ function App() {
               <Route path="/logout" element={<Logout />} />
               <Route path="/register" element={<Register />} />
               <Route path="/recipes/create" element={<AddRecipe />} />
-              <Route path="/recipes/edit" element={<EditRecipe />} />
+              <Route path="/recipes/:recipeId/edit" element={<EditRecipe />} />
               <Route path="/recipes/:recipeId" element={<Details />} />
             </Routes>
           </main>

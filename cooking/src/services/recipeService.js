@@ -26,13 +26,13 @@ export const recipeServiceFactory = (token) => {
 
   const edit = (recipeId, recipeData) => request.put(`${recipeUrl}/${recipeId}`, recipeData);
 
-  const deleteGame = (recipeId) => request.delete(`${recipeUrl}/${recipeId}`);
+  const deleteRecipe = (recipeId) => request.delete(`${recipeUrl}/${recipeId}`);
 
   return {
     getAll,
     getOne,
     create,
     edit,
-    delete: deleteGame,
+    delete: deleteRecipe,
   };
 };

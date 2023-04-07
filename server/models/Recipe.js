@@ -5,7 +5,7 @@ const recipeSchema = new mongoose.Schema({
   imageUrl: { type: String },
   products: Array,
   description: { type: String },
-  owner: { type: String },
+  ownerId: { type: String },
   cooked: { type: Number }
 });
 

@@ -6,7 +6,7 @@ async function getAll() {
 }
 
 async function getById(id) {
-  const recipe = await Recipe.findById({ id });
+  const recipe = await Recipe.find({ _id: id });
   return recipe;
 }
 
@@ -16,7 +16,7 @@ async function createRecipe(data) {
 }
 
 async function update(id, data) {
-  const recipe = await Recipe.findById({ id });
+  const recipe = await Recipe.findOne({ _id: id });
   const updatedRecipe = Object.assign(recipe, data);
   await Recipe.create(updatedRecipe);
   return updatedRecipe;
