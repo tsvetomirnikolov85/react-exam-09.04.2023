@@ -8,11 +8,7 @@ export const Header = () => {
 
   return (
     <nav className="navbar">
-      <div className="logo">
-        <Link to="/">
-          <h1>Cook with Fun</h1>
-        </Link>
-      </div>
+
       <ul className="menu">
         <li>
           <Link to="/">Recipes</Link>

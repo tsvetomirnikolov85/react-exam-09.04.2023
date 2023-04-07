@@ -6,7 +6,7 @@ const User = require("../models/User");
 const JWT_SECRET = "uhasdiuhqwekljh12i3yt12874yhuiy42h187yt28174t6gfdsasd";
 const blacklist = [];
 
-async function register(username, password) {
+async function register(username, email, town, password) {
   const existing = await getUserByUsername(username);
 
   if (existing) {
@@ -15,6 +15,8 @@ async function register(username, password) {
 
   const user = new User({
     username,
+    email,
+    town,
     hashedPassword: await hash(password, 10),
   });
   await user.save();

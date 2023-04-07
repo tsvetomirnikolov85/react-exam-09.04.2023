@@ -37,10 +37,6 @@ async function start() {
   app.use(cors());
   app.use(auth());
 
-  app.get("/", (req, res) => {
-    console.log(req.user);
-    res.json("Hello");
-  });
   app.use("/users", userController);
   app.use("/recipes", recipesController);
 

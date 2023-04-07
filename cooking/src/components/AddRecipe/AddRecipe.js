@@ -1,51 +1,41 @@
 import "./AddRecipe.css";
-import { useState } from "react";
+import { useRecipeContext } from "../../contexts/RecipesContext";
+import { useForm } from "../../hooks/useForm";
 
 export const AddRecipe = () => {
-  const [title, setTitle] = useState("");
-  const [imageUrl, setImageUrl] = useState("");
-  const [products, setProducts] = useState("");
-  const [desription, setDescription] = useState("");
-
-  function onTitleChange(e) {
-    setTitle(e.target.value);
-  }
-  function onImageUrlChange(e) {
-    setImageUrl(e.target.value);
-  }
-
-  function onProductsChange(e) {
-    setProducts(e.target.value);
-  }
-
-  function onDescriptionChange(e) {
-    setDescription(e.target.value);
-  }
-
-  function onAddRecipeSubmit(e) {
-    e.preventDefault();
-    console.log(title);
-    console.log(imageUrl);
-    console.log(products);
-    console.log(desription);
-  }
-
+  const { onCreateRecipeSubmit } = useRecipeContext();
+  const { values, changeHandler, onSubmit } = useForm(
+    {
+      title: "",
+      imageUrl: "",
+      products: "",
+      description: "",
+    },
+    onCreateRecipeSubmit
+  );
   return (
     <div className="form">
       <h2>Add Recipe</h2>
-      <form className="create-form" method="POST" onSubmit={onAddRecipeSubmit}>
-        <input type="text" onChange={onTitleChange} name="title" id="title" placeholder="Title" value={title} />
-        <input type="text" onChange={onImageUrlChange} name="imageUrl" id="product-image" placeholder="Image" value={imageUrl} />
+      <form className="create-form" method="POST" onSubmit={onSubmit}>
+        <input type="text" onChange={changeHandler} name="title" id="title" placeholder="Title" value={values.title} />
+        <input type="text" onChange={changeHandler} name="imageUrl" id="product-image" placeholder="Image" value={values.imageUrl} />
         <p className="info">Please enter every product separated by comma ","</p>
-        <textarea id="product-description" onChange={onProductsChange} name="products" placeholder="Products" rows="5" cols="50" value={products}></textarea>
+        <textarea
+          id="product-description"
+          onChange={changeHandler}
+          name="products"
+          placeholder="Products"
+          rows="5"
+          cols="50"
+          value={values.products}></textarea>
         <textarea
           id="recipe-description"
-          onChange={onDescriptionChange}
+          onChange={changeHandler}
           name="description"
           placeholder="Description"
           rows="5"
           cols="50"
-          value={desription}></textarea>
+          value={values.description}></textarea>
         <button type="submit">Add</button>
       </form>
     </div>

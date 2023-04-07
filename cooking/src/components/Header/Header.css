@@ -1,20 +1,15 @@
 .navbar {
   padding: 6px 5%;
   display: flex;
-  justify-content: space-between;
+  justify-content: right;
   background-color: black;
 }
 
-.navbar .logo h1 {
-  color: #d30303;
-  border: 4px solid;
-  border-radius: 20px;
-}
 
 .navbar .menu li {
-  list-style: none;
   display: inline-block;
 }
+
 .navbar .menu li a {
   display: block;
   padding: 15px;
@@ -24,6 +19,7 @@
   font-weight: bold;
   text-decoration: none;
 }
+
 .navbar .menu li a:hover {
   color: #820404;
 }

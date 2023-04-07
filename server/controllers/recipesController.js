@@ -4,13 +4,11 @@ const { getAll, getById, createRecipe, update, remove } = require("../services/r
 
 router.get("/", async (req, res) => {
   const recipes = await getAll();
-  console.log(recipes);
   res.status(200).json(recipes);
 });
 
-router.post("/", isAuth(), async (req, res) => {
+router.post("/", async (req, res) => {
   let data = req.body;
-  data = Object.assign(data, { ownerId: req.user._id });
   const recipe = await createRecipe(data);
   res.status(201).json(recipe);
 });

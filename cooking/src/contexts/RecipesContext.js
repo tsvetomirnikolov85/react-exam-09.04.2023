@@ -1,14 +1,14 @@
 import { createContext, useState, useEffect, useContext } from "react";
 import { useNavigate } from "react-router-dom";
-
 import { recipeServiceFactory } from "../services/recipeService";
-
+import { useAuthContext } from "./AuthContext";
 export const RecipeContext = createContext();
 
 export const RecipeProvider = ({ children }) => {
   const navigate = useNavigate();
   const [recipes, setRecipes] = useState([]);
   const recipeService = recipeServiceFactory();
+  const { userId } = useAuthContext();
 
   useEffect(() => {
     recipeService.getAll().then((result) => {
@@ -17,10 +17,16 @@ export const RecipeProvider = ({ children }) => {
   }, []);
 
   const onCreateRecipeSubmit = async (data) => {
-    const newRecipe = await recipeService.create(data);
-
-    setRecipes((state) => [...state, newRecipe]);
-
+    let products = data.products;
+    products = products.split("\n").map((x) => x.trim());
+    data.products = products;
+    const recipe = Object.assign(data, { ["ownerID"]: userId, ["cooked"]: 0 });
+    try {
+      const newRecipe = await recipeService.create(recipe);
+      setRecipes((state) => [...state, newRecipe]);
+    } catch (error) {
+      throw new Error(error._message);
+    }
     navigate("/");
   };
 
@@ -37,7 +43,7 @@ export const RecipeProvider = ({ children }) => {
   };
 
   const getRecipe = (recipeId) => {
-    return games.find((recipe) => recipe._id === recipeId);
+    return recipes.find((recipe) => recipe._id === recipeId);
   };
 
   const contextValues = {

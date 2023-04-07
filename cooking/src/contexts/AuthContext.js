@@ -20,19 +20,22 @@ export const AuthProvider = ({ children }) => {
 
       navigate("/");
     } catch (error) {
-      console.log(error);
+      console.error(error);
     }
   };
 
   const onRegisterSubmit = async (values) => {
-    console.log(values);
+    if (values.username == "" || values.email == "" || values.town == "" || values.password == "" || values.repass == "") {
+      return;
+    }
     if (values.password !== values.repass) {
       return;
     }
 
     try {
-      const result = await authService.register(values);
-      setAuth(result);
+      const user = await authService.register(values);
+      console.log(user);
+      setAuth(user);
       navigate("/");
     } catch (error) {
       console.error(error);
@@ -56,7 +59,9 @@ export const AuthProvider = ({ children }) => {
 
   return (
     <>
-      <AuthContext.Provider value={contextValues}>{children}</AuthContext.Provider>
+      <AuthContext.Provider value={contextValues}>
+        {children}
+      </AuthContext.Provider>
     </>
   );
 };

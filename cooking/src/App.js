@@ -8,25 +8,29 @@ import { Details } from "./components/Details/Details";
 import { Logout } from "./components/Logout/Logout";
 import { Routes, Route } from "react-router-dom";
 import { AuthProvider } from "./contexts/AuthContext";
+import { RecipeProvider } from "./contexts/RecipesContext";
+
 import "./App.css";
 
 function App() {
   return (
     <AuthProvider>
-      <div id="main-container">
-        <Header />
-        <main id="main-content">
-          <Routes>
-            <Route path="/" element={<Recipes />} />
-            <Route path="/login" element={<Login />} />
-            <Route path="/logout" element={<Logout />} />
-            <Route path="/register" element={<Register />} />
-            <Route path="/recipes/create" element={<AddRecipe />} />
-            <Route path="/recipes/edit" element={<EditRecipe />} />
-            <Route path="/recipes/:recipeId" element={<Details />} />
-          </Routes>
-        </main>
-      </div>
+      <RecipeProvider>
+        <div id="main-container">
+          <Header />
+          <main id="main-content">
+            <Routes>
+              <Route path="/" element={<Recipes />} />
+              <Route path="/login" element={<Login />} />
+              <Route path="/logout" element={<Logout />} />
+              <Route path="/register" element={<Register />} />
+              <Route path="/recipes/create" element={<AddRecipe />} />
+              <Route path="/recipes/edit" element={<EditRecipe />} />
+              <Route path="/recipes/:recipeId" element={<Details />} />
+            </Routes>
+          </main>
+        </div>
+      </RecipeProvider>
     </AuthProvider>
   );
 }

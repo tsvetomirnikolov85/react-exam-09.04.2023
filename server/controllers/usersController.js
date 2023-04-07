@@ -4,7 +4,12 @@ const { register, login, logout } = require("../services/usersService");
 
 router.post("/register", isGuest(), async (req, res) => {
   try {
-    const result = await register(req.body.username?.trim().toLowerCase(), req.body.password?.trim());
+    const result = await register(
+      req.body.username?.trim().toLowerCase(),
+      req.body.email?.trim(),
+      req.body.town?.trim(),
+      req.body.password?.trim()
+    )
     res.status(201).json(result);
   } catch (err) {
     console.error(err.message);
