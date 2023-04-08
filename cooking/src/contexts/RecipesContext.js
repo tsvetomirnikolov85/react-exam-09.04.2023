@@ -40,6 +40,7 @@ export const RecipeProvider = ({ children }) => {
     navigate(`/recipes/${data._id}`);
   };
 
+
   const deleteRecipe = (recipeId) => {
     setRecipes((state) => state.filter((recipe) => recipe._id !== recipeId));
   };
