@@ -23,10 +23,9 @@ router.put("/:recipeId", async (req, res) => {
   const data = req.body;
   id = req.params.recipeId;
   const updatedRecipe = await update(id, data);
-  console.log(updatedRecipe);
   res.status(200).json(updatedRecipe);
 });
-router.delete("/:recipeId", isAuth(), async (req, res) => {
+router.delete("/:recipeId", async (req, res) => {
   await remove({ _id: req.params.recipeId });
   res.status(200);
 });

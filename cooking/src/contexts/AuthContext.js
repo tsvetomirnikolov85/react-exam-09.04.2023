@@ -34,7 +34,6 @@ export const AuthProvider = ({ children }) => {
 
     try {
       const user = await authService.register(values);
-      console.log(user);
       setAuth(user);
       navigate("/");
     } catch (error) {

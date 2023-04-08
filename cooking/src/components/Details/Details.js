@@ -21,6 +21,18 @@ export const Details = () => {
       })
   }, [recipeId]);
 
+  const onDeleteClick = async () => {
+    // eslint-disable-next-line no-restricted-globals
+    const result = confirm(`Are you sure you want to delete ${recipe.title}`);
+    if (result) {
+      recipeService.delete(recipeId).
+        then(deleteRecipe(recipeId))
+    }
+
+    navigate("/");
+
+  };
+
   return (
     <section id="details">
       <div id="details-wrapper">
@@ -57,7 +69,7 @@ export const Details = () => {
                   <Link to={`/recipes/${recipeId}/edit`} className="user-btn">
                     Edit
                   </Link>
-                  <Link to="" className="user-btn">
+                  <Link to="/" className="user-btn" onClick={onDeleteClick}>
                     Delete
                   </Link>
                 </>
