@@ -18,6 +18,11 @@ export const recipeServiceFactory = (token) => {
     return result;
   };
 
+  const getMyRecipe = async (userId) => {
+    const result = await request.get(`${recipeUrl}/${userId}/myrecipe`);
+    return result;
+  };
+
   const create = async (recipeData) => {
     const result = await request.post(recipeUrl, recipeData);
 
@@ -34,5 +39,6 @@ export const recipeServiceFactory = (token) => {
     create,
     edit,
     delete: deleteRecipe,
+    getMyRecipe
   };
 };

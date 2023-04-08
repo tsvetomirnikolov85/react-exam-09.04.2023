@@ -10,6 +10,11 @@ async function getById(id) {
   return recipe;
 }
 
+async function getByUserId(id) {
+  const recipe = await Recipe.find({ ownerId: id });
+  return recipe;
+}
+
 async function createRecipe(data) {
   const recipe = await Recipe.create(data);
   return recipe;
@@ -32,4 +37,5 @@ module.exports = {
   createRecipe,
   update,
   remove,
+  getByUserId
 };

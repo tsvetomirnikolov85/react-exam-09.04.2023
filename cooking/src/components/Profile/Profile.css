@@ -1,0 +1,23 @@
+#profile-container {
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    border-radius: 5px solid;
+}
+
+#profile-container img {
+    padding: 30px;
+    border-radius: 100px;
+}
+
+#profile-info p {
+    color: white;
+    padding: 10px;
+    font-size: 35px
+}
+
+#my-recipe-container {
+    display: grid;
+    grid-template-columns: 370px 370px 370px 370px 370px;
+    padding: 20px;
+}

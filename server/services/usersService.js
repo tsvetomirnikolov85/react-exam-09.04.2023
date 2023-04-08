@@ -51,8 +51,10 @@ async function getUserByUsername(username) {
 
 function createSession(user) {
   return {
-    username: user.username,
     _id: user._id,
+    username: user.username,
+    email: user.email,
+    town: user.town,
     accessToken: jwt.sign(
       {
         username: user.username,

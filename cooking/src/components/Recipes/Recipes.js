@@ -8,7 +8,7 @@ export const Recipes = () => {
 
         <section className="container">
             {
-                recipes.map((x) => <Recipe key={x._id} {...x} />)
+                recipes.map((x) => <Recipe key={Math.random()} {...x} />)
             }
 
             {recipes.length === 0 && (

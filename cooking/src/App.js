@@ -9,7 +9,9 @@ import { Logout } from "./components/Logout/Logout";
 import { Routes, Route } from "react-router-dom";
 import { AuthProvider } from "./contexts/AuthContext";
 import { RecipeProvider } from "./contexts/RecipesContext";
-
+import { Profile } from "./components/Profile/Profile";
+import { RouteGuard } from "./components/common/RouteGuard";
+import { RecipeOwner } from "./components/common/RecipeOwner";
 import "./App.css";
 
 function App() {
@@ -22,11 +24,18 @@ function App() {
             <Routes>
               <Route path="/" element={<Recipes />} />
               <Route path="/login" element={<Login />} />
-              <Route path="/logout" element={<Logout />} />
               <Route path="/register" element={<Register />} />
-              <Route path="/recipes/create" element={<AddRecipe />} />
-              <Route path="/recipes/:recipeId/edit" element={<EditRecipe />} />
-              <Route path="/recipes/:recipeId" element={<Details />} />
+              <Route element={<RouteGuard />}>
+                <Route path="/logout" element={<Logout />} />
+                <Route path="/recipes/create" element={<AddRecipe />} />
+                <Route path="/profile" element={<Profile />} />
+                <Route path="/recipes/:recipeId" element={<Details />} />
+                <Route path="/recipes/:recipeId/edit" element={
+                  <RecipeOwner>
+                    <EditRecipe />
+                  </RecipeOwner>
+                } />
+              </Route>
             </Routes>
           </main>
         </div>

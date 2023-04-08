@@ -6,9 +6,9 @@ router.post("/register", isGuest(), async (req, res) => {
   try {
     const result = await register(
       req.body.username?.trim().toLowerCase(),
-      req.body.email?.trim(),
-      req.body.town?.trim(),
-      req.body.password?.trim()
+      req.body.email?.trim().toLowerCase(),
+      req.body.town?.trim().toLowerCase(),
+      req.body.password?.trim().toLowerCase()
     )
     res.status(201).json(result);
   } catch (err) {
@@ -17,7 +17,7 @@ router.post("/register", isGuest(), async (req, res) => {
   }
 });
 
-router.post("/login", isGuest(), async (req, res) => {
+router.post("/login", async (req, res) => {
   try {
     const result = await login(req.body.username.trim().toLowerCase(), req.body.password.trim());
     res.json(result);

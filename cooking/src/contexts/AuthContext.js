@@ -50,6 +50,7 @@ export const AuthProvider = ({ children }) => {
     onLoginSubmit,
     onRegisterSubmit,
     onLogout,
+    user: auth,
     userId: auth._id,
     token: auth.accessToken,
     username: auth.username,
