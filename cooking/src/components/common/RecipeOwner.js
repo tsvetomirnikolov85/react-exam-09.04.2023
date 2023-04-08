@@ -13,7 +13,7 @@ export const RecipeOwner = ({
     const currentRecipe = getRecipe(recipeId);
 
     if (currentRecipe && currentRecipe.ownerId !== userId) {
-        return <Navigate to={`/catalog/${recipeId}`} replace />
+        return <Navigate to={"/"} replace />
     }
 
     return children ? children : <Outlet />

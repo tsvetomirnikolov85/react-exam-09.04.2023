@@ -12,6 +12,7 @@ import { RecipeProvider } from "./contexts/RecipesContext";
 import { Profile } from "./components/Profile/Profile";
 import { RouteGuard } from "./components/common/RouteGuard";
 import { RecipeOwner } from "./components/common/RecipeOwner";
+import { AuthGuard } from "./components/common/AuthGuard"
 import "./App.css";
 
 function App() {
@@ -23,8 +24,10 @@ function App() {
           <main id="main-content">
             <Routes>
               <Route path="/" element={<Recipes />} />
-              <Route path="/login" element={<Login />} />
-              <Route path="/register" element={<Register />} />
+              <Route element={<AuthGuard />}>
+                <Route path="/login" element={<Login />} />
+                <Route path="/register" element={<Register />} />
+              </Route>
               <Route element={<RouteGuard />}>
                 <Route path="/logout" element={<Logout />} />
                 <Route path="/recipes/create" element={<AddRecipe />} />
