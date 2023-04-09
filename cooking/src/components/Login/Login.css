@@ -76,3 +76,13 @@ form .message {
   color: #bd2c2c;
   text-decoration: none;
 }
+
+.username-error {
+  color: red;
+  font-size: small;
+}
+
+.password-error {
+  color: red;
+  font-size: small;
+}

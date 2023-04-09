@@ -10,10 +10,6 @@ async function getById(id) {
   return recipe;
 }
 
-async function getByUserId(id) {
-  const recipe = await Recipe.find({ ownerId: id });
-  return recipe;
-}
 
 async function createRecipe(data) {
   const recipe = await Recipe.create(data);
@@ -23,6 +19,15 @@ async function createRecipe(data) {
 async function update(id, data) {
   const recipe = await Recipe.findOne({ _id: id });
   const updatedRecipe = Object.assign(recipe, data);
+  await Recipe.create(updatedRecipe);
+  return updatedRecipe;
+}
+
+async function updateCookedCount(id) {
+  const recipe = await Recipe.findOne({ _id: id });
+  const newValue = recipe.cooked += 1;
+  const updatedRecipe = Object.assign(recipe, { cooked: newValue })
+  console.log(updatedRecipe);
   await Recipe.create(updatedRecipe);
   return updatedRecipe;
 }
@@ -37,5 +42,5 @@ module.exports = {
   createRecipe,
   update,
   remove,
-  getByUserId
+  updateCookedCount
 };

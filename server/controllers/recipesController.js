@@ -1,6 +1,6 @@
 const router = require("express").Router();
 const { isAuth } = require("../middlewares/guards");
-const { getAll, getById, createRecipe, update, remove, getByUserId } = require("../services/recipeServices");
+const { getAll, getById, createRecipe, update, remove, updateCookedCount } = require("../services/recipeServices");
 
 router.get("/", async (req, res) => {
   const recipes = await getAll();
@@ -19,9 +19,9 @@ router.get("/:recipeId", async (req, res) => {
   res.status(200).json(recipe);
 });
 
-router.get("/:userId/myrecipe", async (req, res) => {
-  const id = (req.params.userId);
-  const recipe = await getByUserId(id);
+router.get("/:recipeId/cooked", async (req, res) => {
+  const id = (req.params.recipeId);
+  const recipe = await updateCookedCount(id);
   res.status(200).json(recipe);
 });
 

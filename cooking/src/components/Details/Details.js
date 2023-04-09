@@ -14,12 +14,19 @@ export const Details = () => {
   const navigate = useNavigate();
   const isOwner = userId === recipe?.ownerId
 
+
   useEffect(() => {
     recipeService.getOne(recipeId)
       .then((result) => {
         setRecipe(result[0]);
       })
   }, [recipeId]);
+
+  const onCookNowButtonClick = async (e) => {
+    e.preventDefault();
+    e.target.style.display = 'none'
+    await recipeService.sendCooked(recipeId)
+  }
 
   const onDeleteClick = async () => {
     // eslint-disable-next-line no-restricted-globals
@@ -75,7 +82,7 @@ export const Details = () => {
                 </>
               )
             }
-            <Link to="" id="guest-btn">
+            <Link to="" id="guest-btn" onClick={onCookNowButtonClick}>
               Cook Now
             </Link>
           </div>

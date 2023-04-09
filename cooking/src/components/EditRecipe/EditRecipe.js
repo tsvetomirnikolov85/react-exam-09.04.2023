@@ -39,7 +39,6 @@ export const EditRecipe = () => {
         setDescription(result.description);
       });
   }, [recipeId]);
-
   return (
     <div className="form">
       <h2>Edit Recipe</h2>

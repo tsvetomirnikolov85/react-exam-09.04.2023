@@ -24,6 +24,7 @@ function App() {
           <main id="main-content">
             <Routes>
               <Route path="/" element={<Recipes />} />
+              <Route path="/recipes/:recipeId" element={<Details />} />
               <Route element={<AuthGuard />}>
                 <Route path="/login" element={<Login />} />
                 <Route path="/register" element={<Register />} />
@@ -32,7 +33,6 @@ function App() {
                 <Route path="/logout" element={<Logout />} />
                 <Route path="/recipes/create" element={<AddRecipe />} />
                 <Route path="/profile" element={<Profile />} />
-                <Route path="/recipes/:recipeId" element={<Details />} />
                 <Route path="/recipes/:recipeId/edit" element={
                   <RecipeOwner>
                     <EditRecipe />

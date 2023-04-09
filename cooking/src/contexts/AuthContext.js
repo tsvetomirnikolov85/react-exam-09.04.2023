@@ -13,6 +13,11 @@ export const AuthProvider = ({ children }) => {
   const authService = authServiceFactory(auth.accessToken);
 
   const onLoginSubmit = async (data) => {
+    if (data.username.length < 4) {
+      return;
+    } else if (data.password.length < 4) {
+      return;
+    }
     try {
       const result = await authService.login(data);
 
@@ -25,7 +30,7 @@ export const AuthProvider = ({ children }) => {
   };
 
   const onRegisterSubmit = async (values) => {
-    if (values.username == "" || values.email == "" || values.town == "" || values.password == "" || values.repass == "") {
+    if (values.username.length < 4 || values.email.length < 4 || values.town.length < 4 || values.password.length < 4) {
       return;
     }
     if (values.password !== values.repass) {

@@ -1,6 +1,4 @@
 import "./Profile.css"
-import { useState, useEffect } from "react"
-import { recipeServiceFactory } from "../../services/recipeService";
 import { useAuthContext } from "../../contexts/AuthContext"
 import { MyRecipe } from "../Recipes/MyRecipe/MyRecipe"
 import { useRecipeContext } from "../../contexts/RecipesContext";
