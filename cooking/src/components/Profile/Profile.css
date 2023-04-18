@@ -18,6 +18,6 @@
 
 #my-recipe-container {
     display: grid;
-    grid-template-columns: 370px 370px 370px 370px 370px;
+    grid-template-columns: 370px 370px 370px 370px;
     padding: 20px;
 }

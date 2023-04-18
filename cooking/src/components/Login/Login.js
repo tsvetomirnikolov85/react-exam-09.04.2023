@@ -13,7 +13,6 @@ export const Login = () => {
     },
     onLoginSubmit
   );
-  console.log(onSubmit);
   const [userNameError, setUsernameError] = useState(false);
   const [passwordError, setPasswordError] = useState(false);
 

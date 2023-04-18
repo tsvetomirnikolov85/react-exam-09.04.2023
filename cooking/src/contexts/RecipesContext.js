@@ -18,6 +18,18 @@ export const RecipeProvider = ({ children }) => {
   }, []);
 
   const onCreateRecipeSubmit = async (data) => {
+    if (data.title === "" || data.imageUrl === "" || data.products === "" || data.description === "") {
+      return
+    }
+    if (data.title.length < 4) {
+      return
+    } else if (!data.imageUrl.trim().startsWith("http")) {
+      return
+    } else if (data.products.length < 10) {
+      return
+    } else if (data.description.length < 10) {
+      return
+    }
     let products = data.products;
     products = products.split(",").map(x => x.trim());
     data.products = products;
@@ -32,6 +44,20 @@ export const RecipeProvider = ({ children }) => {
   };
 
   const onEditRecipeSubmit = async (data) => {
+    if (data.title === "" || data.image === "" || data.products === "" || data.description === "") {
+      return
+    }
+
+    if (data.title.length < 4) {
+      return
+    } else if (!data.imageUrl.trim().startsWith("http")) {
+      return
+    } else if (data.products.length < 10) {
+      return
+    } else if (data.description.length < 10) {
+      return
+    }
+
     let products = data.products;
     products = products.split(",").map(x => x.trim())
     data.products = products;

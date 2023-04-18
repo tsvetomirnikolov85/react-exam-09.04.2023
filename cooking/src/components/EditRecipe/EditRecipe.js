@@ -16,6 +16,43 @@ export const EditRecipe = () => {
   const [description, setDescription] = useState("");
   const data = { _id: recipe._id, title, imageUrl, products, description };
 
+  const [titleError, setTitleError] = useState(false);
+  const [imageUrlError, setImageUrlError] = useState(false);
+  const [productsError, setproductsError] = useState(false);
+  const [descriptionError, setdescriptionError] = useState(false);
+
+  function checkTitle() {
+    if (title.length < 4) {
+      setTitleError(true)
+    } else {
+      setTitleError(false)
+    }
+  }
+
+  function checkImgUrl() {
+    if (!imageUrl.trim().startsWith("http")) {
+      setImageUrlError(true)
+    } else {
+      setImageUrlError(false)
+    }
+  }
+
+  function checkProducts() {
+    if (products.length < 10) {
+      setproductsError(true)
+    } else {
+      setproductsError(false)
+    }
+  }
+
+  function checkDescription() {
+    if (description.length < 10) {
+      setdescriptionError(true)
+    } else {
+      setdescriptionError(false)
+    }
+  }
+
   function onTitleChange(e) {
     setTitle(e.target.value);
   }
@@ -43,25 +80,41 @@ export const EditRecipe = () => {
     <div className="form">
       <h2>Edit Recipe</h2>
       <form className="create-form" method="POST" >
-        <input type="text" name="title" id="title" placeholder="Product Name" value={title} onChange={onTitleChange} />
-        <input type="text" name="imageUrl" id="product-image" placeholder="Product Image" value={imageUrl} onChange={onImgUrlChange} />
+        {
+          titleError && <p className="username-error">title must be at least 4 characters long</p>
+        }
+        <input type="text" name="title" id="title" placeholder="Product Name" value={title} onChange={onTitleChange} onBlur={checkTitle} />
+        {
+          imageUrlError && <p className="username-error">image must start whith "http"</p>
+        }
+        <input type="text" name="imageUrl" id="product-image" placeholder="Product Image" value={imageUrl} onChange={onImgUrlChange} onBlur={checkImgUrl} />
         <p className="info">Please enter every product separated by comma ","</p>
+        {
+          productsError && <p className="username-error">products field must be at least 10 characters long</p>
+        }
         <textarea
+          onBlur={checkProducts}
           id="product-description"
           name="products"
           placeholder="Products"
           rows="5"
           cols="50"
           value={products}
-          onChange={onProductsChange}></textarea>
+          onChange={onProductsChange}>
+        </textarea>
+        {
+          descriptionError && <p className="username-error">description field must be at least 10 characters long</p>
+        }
         <textarea
+          onBlur={checkDescription}
           id="product-description"
           name="description"
           placeholder="Description"
           rows="5"
           cols="50"
           value={description}
-          onChange={onDescriptionChange}></textarea>
+          onChange={onDescriptionChange}>
+        </textarea>
         <button type="button" onClick={() => onEditRecipeSubmit(data)}>Edit</button>
       </form>
     </div>

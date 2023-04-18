@@ -7,7 +7,6 @@ export const Profile = () => {
     const { user } = useAuthContext();
     const { recipes } = useRecipeContext();
     const myRecipe = recipes.filter(x => x.ownerId === user._id)
-    console.log(myRecipe);
 
     return (
         <>

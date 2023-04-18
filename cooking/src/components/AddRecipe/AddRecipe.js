@@ -50,6 +50,7 @@ export const AddRecipe = () => {
       setdescriptionError(false)
     }
   }
+
   return (
     <div className="form">
       <h2>Add Recipe</h2>
@@ -64,7 +65,7 @@ export const AddRecipe = () => {
         <input type="text" onChange={changeHandler} onBlur={checkImgUrl} name="imageUrl" id="product-image" placeholder="Image" value={values.imageUrl} />
         <p className="info">Please enter every product separated by comma ","</p>
         {
-          productsError && <p className="username-error">products field must be at least 4 characters long</p>
+          productsError && <p className="username-error">products field must be at least 10 characters long</p>
         }
         <textarea
           onBlur={checkProducts}
@@ -76,7 +77,7 @@ export const AddRecipe = () => {
           cols="50"
           value={values.products}></textarea>
         {
-          descriptionError && <p className="username-error">description field must be at least 4 characters long</p>
+          descriptionError && <p className="username-error">description field must be at least 10 characters long</p>
         }
         <textarea
           onBlur={checkDescription}

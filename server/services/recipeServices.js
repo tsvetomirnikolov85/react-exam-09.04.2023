@@ -27,7 +27,6 @@ async function updateCookedCount(id) {
   const recipe = await Recipe.findOne({ _id: id });
   const newValue = recipe.cooked += 1;
   const updatedRecipe = Object.assign(recipe, { cooked: newValue })
-  console.log(updatedRecipe);
   await Recipe.create(updatedRecipe);
   return updatedRecipe;
 }
